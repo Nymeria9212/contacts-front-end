@@ -1,15 +1,16 @@
 import { ReactNode } from "react";
+import { HeaderStyle } from "./headerStyle";
 interface ButtonsChildren {
   children: ReactNode;
 }
-export const Header: React.FC<ButtonsChildren> = ({ children }) => {
+export const Header = ({ children }: ButtonsChildren) => {
   return (
-    <header>
+    <HeaderStyle>
       <div>
         <img src="src/assets/icon-book.png" alt="book contact icon" />
         Sua agenda
       </div>
       {children}
-    </header>
+    </HeaderStyle>
   );
 };

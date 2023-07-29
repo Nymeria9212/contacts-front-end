@@ -1,11 +1,11 @@
 import { RoutesApp } from "./routes";
-import GlobalStyles from "./styles/GlobalStyles";
+import { GlobalStyles } from "./styles/global";
 
 const App = () => {
   return (
     <>
-      <RoutesApp />
       <GlobalStyles />
+      <RoutesApp />
     </>
   );
 };

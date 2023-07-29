@@ -1,10 +1,12 @@
+import { DivWallpaper } from "./styleWallpaper";
+
 export const WallpaperDivPage = () => {
   return (
-    <div>
+    <DivWallpaper>
       <img
         src="src/assets/google-contatos.jpg"
         alt="Logo de contatos sobre fundo do Google contatos"
       />
-    </div>
+    </DivWallpaper>
   );
 };

@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { ContactResponse } from "../../forms/addContact/schemaContact";
 import { CardContactStyle } from "../cardContact/style";
+import { ContactContext } from "../../../contexts/contactContext";
 
 export const CardContact = (contact: ContactResponse) => {
+  const { setModalUpdate, setCurrentContact, deleteContact } =
+    useContext(ContactContext);
   return (
     <CardContactStyle>
       <div>
@@ -10,8 +14,15 @@ export const CardContact = (contact: ContactResponse) => {
         <p>Email: {contact.email}</p>
       </div>
       <div>
-        <button>Editar</button>
-        <button>Excluir</button>
+        <button
+          onClick={() => {
+            setModalUpdate(true);
+            setCurrentContact(contact);
+          }}
+        >
+          Editar
+        </button>
+        <button onClick={() => deleteContact(contact.id)}>Excluir</button>
       </div>
     </CardContactStyle>
   );

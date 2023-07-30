@@ -3,11 +3,16 @@ import { styled } from "styled-components";
 export const MainPag = styled.div`
   display: flex;
   flex-direction: column;
-  ul {
+  .box-conteiner {
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    ul {
+      margin-top: 3rem;
+      display: flex;
+      flex-wrap: wrap;
+      width: 70%;
+      gap: 1.5rem;
+
+      align-content: flex-start;
+    }
   }
 `;

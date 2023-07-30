@@ -6,6 +6,8 @@ export const schemaContact = z.object({
   email: z.string().email("Precisa ser um email válido"),
 });
 
+export const schemaPartialContact = schemaContact.partial();
+
 export type ContactResponse = {
   id: number;
   full_name: string;
@@ -13,5 +15,8 @@ export type ContactResponse = {
   email: string;
   data: string;
 };
+
+export type TContacRequest = Omit<ContactResponse, "id" | "data">;
+export type TContactUpdate = Partial<TContacRequest>;
 
 export type IContact = z.infer<typeof schemaContact>;

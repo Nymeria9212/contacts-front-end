@@ -5,7 +5,6 @@ import { IContextLogin } from "../interfaces/loginContextInterface";
 import { TLogin } from "../components/forms/login/schemaLogin";
 import { api } from "../services/api";
 import { useNavigate } from "react-router-dom";
-
 export const LoginContext = createContext({} as IContextLogin);
 
 export const LoginProvider = ({ children }: Children) => {
@@ -19,6 +18,7 @@ export const LoginProvider = ({ children }: Children) => {
       const { token } = response.data;
       api.defaults.headers.common.Authorization = `Bearer ${token}`;
       localStorage.setItem("@token", response.data.token);
+
       navigate("/dashboard");
     } catch (error) {
       console.error(error);

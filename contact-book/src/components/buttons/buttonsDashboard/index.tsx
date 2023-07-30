@@ -3,18 +3,10 @@ import { UserContext } from "../../../contexts/userContext";
 import { ContactContext } from "../../../contexts/contactContext";
 
 export const ButtonsDashboard = () => {
-  const { setShowProfile, readProfile } = useContext(UserContext);
   const { setModalContact } = useContext(ContactContext);
+  const { exit } = useContext(UserContext);
   return (
     <div>
-      <button
-        onClick={() => {
-          readProfile();
-          setShowProfile(true);
-        }}
-      >
-        Perfil
-      </button>
       <button
         onClick={() => {
           setModalContact(true);
@@ -22,7 +14,7 @@ export const ButtonsDashboard = () => {
       >
         Criar contato
       </button>
-      <button>Sair</button>
+      <button onClick={() => exit()}>Sair</button>
     </div>
   );
 };

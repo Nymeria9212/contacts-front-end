@@ -9,7 +9,11 @@ import { UserContext } from "../../../contexts/userContext";
 export const FormRegister = () => {
   const { setRegister } = useContext(LoginContext);
   const { createUser } = useContext(UserContext);
-  const { handleSubmit, register } = useForm<TRegister>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<TRegister>({
     resolver: zodResolver(schemaRegister),
   });
 
@@ -27,15 +31,19 @@ export const FormRegister = () => {
           <h2>Cadastrar</h2>
           <label htmlFor="full_name">Nome completo:</label>
           <input type="text" id="full_name" {...register("full_name")} />
+          <p>{errors.full_name?.message} </p>
 
           <label htmlFor="telephone">Telefone</label>
           <input type="text" id="telephone" {...register("telephone")} />
+          <p>{errors.telephone?.message}</p>
 
           <label htmlFor="email">Email:</label>
           <input type="text" id="email" {...register("email")} />
+          <p>{errors.email?.message}</p>
 
           <label htmlFor="password">Senha:</label>
           <input type="password" id="password" {...register("password")} />
+          <p>{errors.password?.message}</p>
 
           <button>Cadastrar</button>
         </form>

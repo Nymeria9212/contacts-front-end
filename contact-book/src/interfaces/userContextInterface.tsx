@@ -6,7 +6,11 @@ export interface IUserContext {
   profile: IProfile | undefined;
   showProfile: boolean;
   setShowProfile: React.Dispatch<React.SetStateAction<boolean>>;
-  readProfile: () => Promise<void>;
+  updateUser: (data: TProfileUpdate) => Promise<void>;
+  modalUpdateUser: boolean;
+  setModalUpdateUser: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteUser: () => Promise<void>;
+  exit: () => void;
 }
 
 export const schemaProfile = z.object({
@@ -15,4 +19,7 @@ export const schemaProfile = z.object({
   full_name: z.string(),
 });
 
+export const schemaProfilePartial = schemaProfile.partial();
+
 export type IProfile = z.infer<typeof schemaProfile>;
+export type TProfileUpdate = z.infer<typeof schemaProfilePartial>;

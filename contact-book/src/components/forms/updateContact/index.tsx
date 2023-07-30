@@ -1,32 +1,40 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { IContact, TContacRequest, schemaContact } from "./schemaContact";
-import { ModalContact } from "./style";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
 import { ContactContext } from "../../../contexts/contactContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  TContactUpdate,
+  schemaPartialContact,
+} from "../addContact/schemaContact";
+import { ModalUpdate } from "./style";
 
-export const FormCreateContact = () => {
+export const ModalUpdateContact = () => {
+  const { setModalUpdate, updateContact, currentContact } =
+    useContext(ContactContext);
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<TContacRequest>({
-    resolver: zodResolver(schemaContact),
+  } = useForm({
+    resolver: zodResolver(schemaPartialContact),
+    defaultValues: {
+      full_name: currentContact.full_name,
+      email: currentContact.email,
+      telephone: currentContact.telephone,
+    },
   });
 
-  const { setModalContact, createContact } = useContext(ContactContext);
-
-  const formContact = (data: IContact) => {
-    createContact(data);
-    setModalContact(false);
+  const formContact = (data: TContactUpdate) => {
+    updateContact(data, currentContact.id);
+    setModalUpdate(false);
   };
   return (
-    <ModalContact>
+    <ModalUpdate>
       <div>
         <button
           className="closeModalContact"
           onClick={() => {
-            setModalContact(false);
+            setModalUpdate(false);
           }}
         >
           X
@@ -47,6 +55,6 @@ export const FormCreateContact = () => {
           <button type="submit">Criar</button>
         </form>
       </div>
-    </ModalContact>
+    </ModalUpdate>
   );
 };

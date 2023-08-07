@@ -18,8 +18,8 @@ export const UserProvider = ({ children }: Children) => {
   const [profile, setProfile] = useState<IProfile | undefined>();
   const [showProfile, setShowProfile] = useState(false);
   const [modalUpdateUser, setModalUpdateUser] = useState(false);
-
   const navigate = useNavigate();
+
   const createUser = async (data: TRegister) => {
     try {
       const response = await api.post("/users", data);
@@ -41,6 +41,7 @@ export const UserProvider = ({ children }: Children) => {
       navigate("/");
     }
   }, []);
+
   useEffect(() => {
     const token = localStorage.getItem("@token");
     if (token) {
@@ -56,7 +57,7 @@ export const UserProvider = ({ children }: Children) => {
       };
       readProfile();
     }
-  });
+  }, []);
 
   const updateUser = async (data: TProfileUpdate) => {
     const token = localStorage.getItem("@token");
